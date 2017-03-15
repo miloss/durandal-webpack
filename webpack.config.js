@@ -29,8 +29,7 @@ module.exports = {
 
 	// Custom plugins
 	plugins: [
-		new webpack.DefinePlugin(GLOBALS),
-		new webpack.optimize.OccurenceOrderPlugin()
+		new webpack.DefinePlugin(GLOBALS)
 	]
 	.concat(DEBUG ? [] : [
 		new webpack.optimize.DedupePlugin(),
@@ -40,21 +39,19 @@ module.exports = {
 
 	module: {
 		loaders: [
-			{ test: /\.html$/, loader: 'html' },
-			{ test: /\.json$/, loader: 'json' }
+			{ test: /\.html$/, loader: 'html-loader' },
+			{ test: /\.json$/, loader: 'json-loader' }
 		]
 	},
 
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.json'],
+		extensions: ['.js', '.jsx', '.json'],
 
-		modulesDirectories: [
+		modules: [
 			'node_modules',
 			'app',
             'lib'
 		],
-
-		root: path.join(__dirname, 'app'),
 
 		alias: {
 			durandal: 'durandal/js',
@@ -71,7 +68,6 @@ module.exports = {
 		hot: false,
 		inline: true,
 		historyApiFallback: true,
-		stats: { colors: true },
-		progress: true
+		stats: { colors: true }
 	}
 };
