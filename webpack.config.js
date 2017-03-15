@@ -2,21 +2,12 @@ var fs = require('fs');
 var url = require('url');
 var path = require('path');
 var webpack = require('webpack');
-
-var DEBUG = !process.argv.production;
-
-var GLOBALS = {
-	'process.env.NODE_ENV': DEBUG ? '"development"' : '"production"',
-	'__DEV__': DEBUG
-};
+var ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 module.exports = {
 	// Main entry directory and file
 	entry: {
-		app: [
-			// 'webpack/hot/dev-server',
-			path.join(__dirname, 'app', 'main.js')
-		]
+		app: './app/main.js'
 	},
 
 	// Output directories and file
@@ -29,13 +20,10 @@ module.exports = {
 
 	// Custom plugins
 	plugins: [
-		new webpack.DefinePlugin(GLOBALS)
-	]
-	.concat(DEBUG ? [] : [
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin(),
-		new webpack.optimize.AggressiveMergingPlugin()
-	]),
+        new ContextReplacementPlugin(
+            /durandal(\\|\/)js/,
+            path.join(__dirname, 'src'))
+	],
 
 	module: {
 		loaders: [

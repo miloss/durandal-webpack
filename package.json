@@ -9,11 +9,13 @@
   },
   "devDependencies": {
     "html-loader": "^0.3.0",
+    "nodemon": "^1.11.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "server": "webpack-dev-server",
+    "dev": "nodemon --watch webpack.config.js --exec 'npm run server'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

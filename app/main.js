@@ -10,7 +10,8 @@ require('overrides/views');
 require('overrides/widget');
 
 // Webpack sets this __DEV__ variable. See `webpack.config.js` file
-if(__DEV__) {
+//if(__DEV__) {
+if(true) {
 	system.debug(true);
 
 	window.ko = ko;
