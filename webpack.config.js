@@ -50,7 +50,8 @@ module.exports = {
 
 		modulesDirectories: [
 			'node_modules',
-			'app'
+			'app',
+            'lib'
 		],
 
 		root: path.join(__dirname, 'app'),
